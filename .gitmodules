@@ -1,0 +1,3 @@
+[submodule "src/plugins/strapi-plugin-cron"]
+	path = src/plugins/strapi-plugin-cron
+	url = https://github.com/innovato/strapi-plugin-cron
