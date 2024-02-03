@@ -583,6 +583,61 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginCronCronJob extends Schema.CollectionType {
+  collectionName: 'cron_jobs';
+  info: {
+    singularName: 'cron-job';
+    pluralName: 'cron-jobs';
+    displayName: 'Cron Job';
+  };
+  options: {
+    draftAndPublish: true;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    schedule: Attribute.String & Attribute.Required;
+    executeScriptFromFile: Attribute.Boolean & Attribute.DefaultTo<true>;
+    pathToScript: Attribute.String;
+    script: Attribute.Text;
+    iterationsLimit: Attribute.Integer &
+      Attribute.SetMinMax<
+        {
+          min: -1;
+        },
+        number
+      > &
+      Attribute.DefaultTo<-1>;
+    iterationsCount: Attribute.Integer & Attribute.DefaultTo<0>;
+    startDate: Attribute.DateTime;
+    endDate: Attribute.DateTime;
+    latestExecutionLog: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::cron.cron-job',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::cron.cron-job',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -795,6 +850,7 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::cron.cron-job': PluginCronCronJob;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
