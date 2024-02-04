@@ -31,6 +31,14 @@ cd src/plugins/strapi-plugin-cron
 cd ../../..
 ```
 
+For plugin's server code to hot reload it is required to keep the development server of the plugin module on. Otherwise only the frontend code in `[plugin]/admin` will hot reload.
+
+```
+cd src/plugins/strapi-plugin-cron
+[npm|yarn|bun] bun dev
+cd ../../..
+```
+
 Run in development mode
 
 ```
