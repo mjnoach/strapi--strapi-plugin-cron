@@ -2,7 +2,6 @@
 
 **This repository is supplementary to [@innovato/strapi-plugin-cron](https://github.com/innovato/strapi-plugin-cron)**
 
-
 ## 📦 🔧 Installation & Development
 
 Clone this Strapi project

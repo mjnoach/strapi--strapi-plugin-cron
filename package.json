@@ -38,5 +38,7 @@
     "npm": ">=6.0.0"
   },
   "license": "MIT",
-  "workspaces": ["src/plugins/*"]
+  "workspaces": [
+    "src/plugins/*"
+  ]
 }
