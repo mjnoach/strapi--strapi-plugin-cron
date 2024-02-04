@@ -583,7 +583,7 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
-export interface PluginCronCronJob extends Schema.CollectionType {
+export interface PluginStrapiPluginCronCronJob extends Schema.CollectionType {
   collectionName: 'cron_jobs';
   info: {
     singularName: 'cron-job';
@@ -624,13 +624,13 @@ export interface PluginCronCronJob extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::cron.cron-job',
+      'plugin::strapi-plugin-cron.cron-job',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::cron.cron-job',
+      'plugin::strapi-plugin-cron.cron-job',
       'oneToOne',
       'admin::user'
     > &
@@ -850,7 +850,7 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
-      'plugin::cron.cron-job': PluginCronCronJob;
+      'plugin::strapi-plugin-cron.cron-job': PluginStrapiPluginCronCronJob;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;

@@ -1,5 +1,5 @@
 export default () => ({
-  'cron': {
+  'strapi-plugin-cron': {
     enabled: true,
     resolve: './src/plugins/strapi-plugin-cron'
   },
