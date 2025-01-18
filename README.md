@@ -25,9 +25,9 @@ cp .env.example .env
 Install and build
 
 ```
-bun i
+yarn i
 cd src/plugins/strapi-plugin-cron
-bun run build
+yarn run build
 cd ../../..
 ```
 
@@ -35,12 +35,12 @@ For plugin's server code to hot reload it is required to keep the development se
 
 ```
 cd src/plugins/strapi-plugin-cron
-bun dev
+yarn dev
 cd ../../..
 ```
 
 Run in development mode
 
 ```
-bun dev
+yarn dev
 ```
