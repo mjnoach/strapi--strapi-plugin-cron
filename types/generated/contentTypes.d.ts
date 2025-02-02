@@ -606,6 +606,64 @@ export interface PluginReviewWorkflowsWorkflowStage
   }
 }
 
+export interface PluginStrapiPluginCronCronJob
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'cron_jobs'
+  info: {
+    description: ''
+    displayName: 'Cron Job'
+    pluralName: 'cron-jobs'
+    singularName: 'cron-job'
+  }
+  options: {
+    draftAndPublish: true
+  }
+  pluginOptions: {
+    'content-manager': {
+      visible: false
+    }
+    'content-type-builder': {
+      visible: false
+    }
+  }
+  attributes: {
+    createdAt: Schema.Attribute.DateTime
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private
+    endDate: Schema.Attribute.DateTime
+    executeScriptFromFile: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>
+    iterationsCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>
+    iterationsLimit: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: -1
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<-1>
+    latestExecutionLog: Schema.Attribute.JSON
+    locale: Schema.Attribute.String & Schema.Attribute.Private
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::strapi-plugin-cron.cron-job'
+    > &
+      Schema.Attribute.Private
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique
+    pathToScript: Schema.Attribute.String
+    publicationDate: Schema.Attribute.DateTime
+    publishedAt: Schema.Attribute.DateTime
+    schedule: Schema.Attribute.String & Schema.Attribute.Required
+    script: Schema.Attribute.Text
+    startDate: Schema.Attribute.DateTime
+    updatedAt: Schema.Attribute.DateTime
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private
+  }
+}
+
 export interface PluginUploadFile extends Struct.CollectionTypeSchema {
   collectionName: 'files'
   info: {
@@ -883,6 +941,7 @@ declare module '@strapi/strapi' {
       'plugin::i18n.locale': PluginI18NLocale
       'plugin::review-workflows.workflow': PluginReviewWorkflowsWorkflow
       'plugin::review-workflows.workflow-stage': PluginReviewWorkflowsWorkflowStage
+      'plugin::strapi-plugin-cron.cron-job': PluginStrapiPluginCronCronJob
       'plugin::upload.file': PluginUploadFile
       'plugin::upload.folder': PluginUploadFolder
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission
