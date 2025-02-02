@@ -4,25 +4,31 @@
 
 ## 📦 🔧 Installation & Development
 
-Clone this Strapi project
+### 1. Clone this Strapi project
 
 ```
 https://github.com/mjnoach/strapi--strapi-plugin-cron.git
 ```
 
-Clone `@innovato/strapi-plugin-cron` into `src/plugins`
+### 2. Clone `@innovato/strapi-plugin-cron` into an independent directory and create create a symlink betweet the two projects
 
 ```
-git submodule update --init --remote
+ln -s ~/[path-to]/strapi-plugin-cron src/plugins/strapi-plugin-cron
 ```
 
-Set up environment variables
+This serves a better workflow than the below instruction, when developing a Strapi application and a plugin separately on local machine.
+
+### ~~2. Clone `@innovato/strapi-plugin-cron` into `src/plugins`~~
+
+~~git submodule update --init --remote~~
+
+### 3. Set up environment variables
 
 ```
 cp .env.example .env
 ```
 
-Install and build
+### 4. Install and build
 
 ```
 yarn i
@@ -31,7 +37,7 @@ yarn run build
 cd ../../..
 ```
 
-For plugin's server code to hot reload it is required to keep the development server of the plugin module on. Otherwise only the frontend code in `[plugin]/admin` will hot reload.
+### 5. For plugin's server code to hot reload it is required to keep the development server of the plugin module on. Otherwise only the frontend code in `[plugin]/admin` will hot reload.
 
 ```
 cd src/plugins/strapi-plugin-cron
@@ -39,7 +45,7 @@ yarn dev
 cd ../../..
 ```
 
-Run in development mode
+### 6. Run in development mode
 
 ```
 yarn dev
